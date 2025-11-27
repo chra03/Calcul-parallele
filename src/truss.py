@@ -1,8 +1,8 @@
 import numpy as np
 from math import sin, cos, sqrt, pi
 
-def truss(A):
-    """Computes mass and stress for the 10-bar truss problem
+def truss(A):   #A = tableau des sections des 10 barres
+    """  Computes mass and stress for the 10-bar truss problem
 
     Parameters
     ----------
@@ -20,14 +20,14 @@ def truss(A):
     """
 
     # --- specific truss setup -----
-    P = 1e5  # applied loads
+    P = 1e5  # force  applied loads
     Ls = 360.0  # length of sides
     Ld = sqrt(360**2 * 2)  # length of diagonals
 
-    start = [5, 3, 6, 4, 4, 2, 5, 6, 3, 4]
-    finish = [3, 1, 4, 2, 3, 1, 4, 3, 2, 1]
-    phi = np.array([0, 0, 0, 0, 90, 90, -45, 45, -45, 45])*pi/180
-    L = np.array([Ls, Ls, Ls, Ls, Ls, Ls, Ld, Ld, Ld, Ld])
+    start = [5, 3, 6, 4, 4, 2, 5, 6, 3, 4] #noeud de départ de la barre i
+    finish = [3, 1, 4, 2, 3, 1, 4, 3, 2, 1] #noeud d'arrivée de la barre i
+    phi = np.array([0, 0, 0, 0, 90, 90, -45, 45, -45, 45])*pi/180 #angle en radians
+    L = np.array([Ls, Ls, Ls, Ls, Ls, Ls, Ld, Ld, Ld, Ld]) #longueur des barres
 
     nbar = len(A)  # number of bars
     E = 1e7*np.ones(nbar)  # modulus of elasticity
@@ -145,3 +145,17 @@ def node2idx(node, DOF):
         idx = np.concatenate((idx, np.arange(start, finish, dtype=int)))
 
     return idx
+
+
+
+
+
+
+
+"""Le truss est un problème classique d’éléments finis.
+Pour chaque barre, on calcule une matrice de rigidité élémentaire en fonction
+de sa longueur, de son angle et de son module d’élasticité.
+Ces matrices sont assemblées dans une matrice globale, puis on applique les
+conditions limites en supprimant les degrés de liberté bloqués.
+Ensuite, on résout le système linéaire K·d = F pour obtenir les déplacements,
+et enfin on calcule le stress dans chaque barre"""

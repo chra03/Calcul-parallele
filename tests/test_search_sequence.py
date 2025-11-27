@@ -1,4 +1,8 @@
 import numpy as np
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+
 from src.search_sequence import search_sequence_numpy
 from src.search_sequence_simple import search_sequence_python
 from src.search_sequence_numba import search_sequence_numba
@@ -16,3 +20,4 @@ def test_parity():
 
     assert list(out_np) == list(out_py)
     assert list(out_nb) == list(out_py)
+print("Parité OK ✔️")

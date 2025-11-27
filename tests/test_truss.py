@@ -18,3 +18,5 @@ def test_truss_parity():
 
     assert abs(mass_py - mass_nb) < 1e-6
     assert np.allclose(stress_py, stress_nb, atol=1e-6)
+
+print("Parité truss OK ✔️")
