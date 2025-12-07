@@ -129,6 +129,8 @@ Cette utilisation est totalement transparente et encouragée par l’enseignant.
 
 ```bash
 pip install -r requirements.txt
-Lancer l'application Streamlit
+```
+### Lancer l'application Streamlit
+```bash
 streamlit run app.py
-
+```
