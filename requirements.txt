@@ -1,0 +1,7 @@
+streamlit
+numpy
+pandas
+numba
+radon
+astor
+plotly
